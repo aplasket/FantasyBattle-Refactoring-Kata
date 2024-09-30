@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FantasyBattle
 {
@@ -16,6 +18,16 @@ namespace FantasyBattle
         {
             Armor = armor;
             Buffs = buffs;
+        }
+
+        public override int GetSoak( int? totalDamage)
+        {
+            return (int)Math.Round(
+                Armor.DamageSoak *
+                (
+                    Buffs.Select(x => x.SoakModifier).Sum() + 1
+                ), 0
+            );
         }
     }
 

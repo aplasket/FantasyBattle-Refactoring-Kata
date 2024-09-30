@@ -18,5 +18,33 @@
             Feet = feet;
             Chest = chest;
         }
+
+        public int CalculateBaseDamage()
+        {
+            return GetBaseDamage(LeftHand) +
+                   GetBaseDamage(RightHand) +
+                   GetBaseDamage(Head) +
+                   GetBaseDamage(Feet) +
+                   GetBaseDamage(Chest);
+        }
+
+        private int GetBaseDamage(Item item)
+        {
+            return item?.BaseDamage ?? 0;
+        }
+        
+        public float CalculateDamageModifier()
+        {
+            return GetDamageModifier(LeftHand) +
+                   GetDamageModifier(RightHand) +
+                   GetDamageModifier(Head) +
+                   GetDamageModifier(Feet) +
+                   GetDamageModifier(Chest);
+        }
+
+        private float GetDamageModifier(Item item)
+        {
+            return item?.DamageModifier ?? 0;
+        }
     }
 }
